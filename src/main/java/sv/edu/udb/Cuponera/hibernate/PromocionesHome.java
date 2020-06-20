@@ -114,4 +114,9 @@ public class PromocionesHome {
 			throw re;
 		}
 	}
+	
+	public List<Promociones> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Promociones", Promociones.class).getResultList();
+	}
+
 }

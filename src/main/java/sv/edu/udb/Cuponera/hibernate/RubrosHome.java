@@ -114,4 +114,9 @@ public class RubrosHome {
 			throw re;
 		}
 	}
+	
+	public List<Rubros> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Rubros", Rubros.class).getResultList();
+	}
+
 }

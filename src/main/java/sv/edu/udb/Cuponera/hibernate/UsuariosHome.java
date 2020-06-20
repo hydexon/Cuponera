@@ -114,4 +114,9 @@ public class UsuariosHome {
 			throw re;
 		}
 	}
+	
+	public List<Usuarios> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Usuarios", Usuarios.class).getResultList();
+	}
+
 }

@@ -113,4 +113,9 @@ public class RolesHome {
 			throw re;
 		}
 	}
+	
+	public List<Roles> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Roles", Roles.class).getResultList();
+	}
+
 }

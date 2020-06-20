@@ -114,4 +114,9 @@ public class ClientesHome {
 			throw re;
 		}
 	}
+	
+	public List<Clientes> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Clientes", Clientes.class).getResultList();
+	}
+
 }

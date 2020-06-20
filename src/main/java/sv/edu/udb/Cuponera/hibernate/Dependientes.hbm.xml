@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jun 19, 2020 11:51:27 PM by Hibernate Tools 5.4.14.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="Cuponera" dynamic-insert="false" dynamic-update="false" mutable="true" name="sv.edu.udb.Cuponera.hibernate.Dependientes" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Dependientes">
+        <id name="dependienteId" type="java.lang.Integer">
+            <column name="DependienteId"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="48" name="Nombre" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="apellidos" optimistic-lock="true" type="string" unique="false">
+            <column length="48" name="Apellidos" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="correo" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="Correo" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="contrasena" optimistic-lock="true" type="string" unique="false">
+            <column length="256" name="Contrasena" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="username" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="Username" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

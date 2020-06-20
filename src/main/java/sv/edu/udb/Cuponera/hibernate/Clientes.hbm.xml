@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jun 19, 2020 11:51:27 PM by Hibernate Tools 5.4.14.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="Cuponera" dynamic-insert="false" dynamic-update="false" mutable="true" name="sv.edu.udb.Cuponera.hibernate.Clientes" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Clientes">
+        <id name="clienteId" type="java.lang.Integer">
+            <column name="ClienteId"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="username" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="Username" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="nombres" optimistic-lock="true" type="string" unique="false">
+            <column length="75" name="Nombres" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="apellidos" optimistic-lock="true" type="string" unique="false">
+            <column length="75" name="Apellidos" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="dui" optimistic-lock="true" type="string" unique="false">
+            <column length="9" name="DUI" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="telefono" optimistic-lock="true" type="string" unique="false">
+            <column length="12" name="Telefono" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="correo" optimistic-lock="true" type="string" unique="false">
+            <column length="64" name="Correo" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="contrasena" optimistic-lock="true" type="string" unique="false">
+            <column length="256" name="Contrasena" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="confirmado" optimistic-lock="true" type="int" unique="false">
+            <column name="Confirmado" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="clienteConfirmTokens" optimistic-lock="true" sort="unsorted" table="ClienteConfirmToken">
+            <key on-delete="noaction">
+                <column name="Cliente" not-null="true"/>
+            </key>
+            <one-to-many class="sv.edu.udb.Cuponera.hibernate.ClienteConfirmToken" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="cuponeses" optimistic-lock="true" sort="unsorted" table="Cupones">
+            <key on-delete="noaction">
+                <column name="Cliente" not-null="true"/>
+            </key>
+            <one-to-many class="sv.edu.udb.Cuponera.hibernate.Cupones" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

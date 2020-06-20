@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jun 19, 2020 11:51:27 PM by Hibernate Tools 5.4.14.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="Cuponera" dynamic-insert="false" dynamic-update="false" mutable="true" name="sv.edu.udb.Cuponera.hibernate.Cupones" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Cupones">
+        <id name="cuponId" type="string">
+            <column length="14" name="CuponId"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="sv.edu.udb.Cuponera.hibernate.Clientes" embed-xml="true" fetch="select" insert="true" name="clientes" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Cliente" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="sv.edu.udb.Cuponera.hibernate.Promociones" embed-xml="true" fetch="select" insert="true" name="promociones" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="Promocion" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="estado" optimistic-lock="true" type="int" unique="false">
+            <column name="Estado" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

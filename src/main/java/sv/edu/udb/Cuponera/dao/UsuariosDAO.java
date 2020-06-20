@@ -54,6 +54,7 @@ public class UsuariosDAO extends AppConnection {
 			usr.setCorreo(resultSet.getString(4));
 			usr.setContrasena(resultSet.getString(5));
 			usr.setRol(roles.findById(resultSet.getInt(6)));
+                        usuarios.add(usr);
 		}
 		
 		close();

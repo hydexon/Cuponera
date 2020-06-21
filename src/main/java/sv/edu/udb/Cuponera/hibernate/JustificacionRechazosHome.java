@@ -116,4 +116,9 @@ public class JustificacionRechazosHome {
 			throw re;
 		}
 	}
+	
+	public List<JustificacionRechazos> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Dependientes", JustificacionRechazos.class).getResultList();
+	}
+
 }

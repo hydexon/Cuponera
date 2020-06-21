@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
+import javax.persistence.criteria.CriteriaBuilder;
+
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
@@ -115,5 +117,9 @@ public class ClienteConfirmTokenHome {
 			logger.log(Level.SEVERE, "find by example failed", re);
 			throw re;
 		}
+	}
+	
+	public List<ClienteConfirmToken> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM ClienteConfirmToken", ClienteConfirmToken.class).getResultList();
 	}
 }

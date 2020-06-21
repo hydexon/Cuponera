@@ -114,4 +114,9 @@ public class CuponesHome {
 			throw re;
 		}
 	}
+	
+	public List<Cupones> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Cupones", Cupones.class).getResultList();
+	}
+
 }

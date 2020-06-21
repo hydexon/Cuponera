@@ -114,4 +114,8 @@ public class DependientesHome {
 			throw re;
 		}
 	}
+	public List<Dependientes> findAll() {
+		return sessionFactory.getCurrentSession().createQuery("SELECT * FROM Dependientes", Dependientes.class).getResultList();
+	}
+
 }

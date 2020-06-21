@@ -29,7 +29,7 @@ public class CuponesDAO extends AppConnection {
 		pstmt.setInt(1, cupon.getPromo().getId());
 		pstmt.setInt(2, cupon.getCliente().getId());
 		pstmt.setInt(3, cupon.getEstado());
-		pstmt.setString(4, cupon.getId());
+		pstmt.setInt(4, cupon.getId());
 		pstmt.execute();
 		close();
 		
@@ -48,7 +48,7 @@ public class CuponesDAO extends AppConnection {
 		ArrayList<Cupon> cupones = new ArrayList<Cupon>();
 		while(resultSet.next()) {
 			Cupon cup = new Cupon();
-			cup.setId(resultSet.getString(1));
+			cup.setId(resultSet.getInt(1));
 			cup.setPromo(promos.findById(resultSet.getInt(2)));
 			cup.setCliente(clientes.findById(resultSet.getInt(3)));
 			cup.setEstado(resultSet.getInt(4));
@@ -65,7 +65,7 @@ public class CuponesDAO extends AppConnection {
 		ArrayList<Cupon> cupones = new ArrayList<Cupon>();
 		while(resultSet.next()) {
 			Cupon cup = new Cupon();
-			cup.setId(resultSet.getString(1));
+			cup.setId(resultSet.getInt(1));
 			cup.setPromo(promos.findById(resultSet.getInt(2)));
 			cup.setCliente(clientes.findById(resultSet.getInt(3)));
 			cup.setEstado(resultSet.getInt(4));
@@ -76,14 +76,15 @@ public class CuponesDAO extends AppConnection {
 	}
 
 	
-	public Cupon findById(String id) throws SQLException {
+	public Cupon findById(int id) throws SQLException {
 		connect();
 		pstmt = conn.prepareStatement("SELECT * FROM Cupones WHERE CuponId=?");
-		pstmt.setString(1, id);
+		pstmt.setInt(1, id);
 		resultSet = pstmt.executeQuery();
-		Cupon cup = new Cupon();
+		Cupon cup = null;
 		while(resultSet.next()) {
-			cup.setId(resultSet.getString(1));
+                    cup = new Cupon();
+			cup.setId(resultSet.getInt(1));
 			cup.setPromo(promos.findById(resultSet.getInt(2)));
 			cup.setCliente(clientes.findById(resultSet.getInt(3)));
 			cup.setEstado(resultSet.getInt(4));

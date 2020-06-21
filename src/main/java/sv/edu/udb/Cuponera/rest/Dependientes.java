@@ -51,7 +51,21 @@ public class Dependientes {
 		Dependiente dep = dependientes.findById(id);
 		if(dep == null) {
 			return Response.status(400)
-					 .entity("Cliente no corresponde a ninguna existencia")
+					 .entity("Dependiente no corresponde a ninguna existencia")
+					 .header("Access-Control-Allow-Origin", "*")
+					 .build();
+		}
+		return Response.status(200).entity(dep).build();
+	}
+        
+        @GET
+	@Path("usr/{usr}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getByUsr(@PathParam("usr") String usr) throws SQLException {
+		Dependiente dep = dependientes.findByUsr(usr);
+		if(dep == null) {
+			return Response.status(400)
+					 .entity("[]")
 					 .header("Access-Control-Allow-Origin", "*")
 					 .build();
 		}
@@ -84,7 +98,7 @@ public class Dependientes {
 		Dependiente dep = dependientes.findById(id);
 		if(dep == null) {
 			return Response.status(400)
-					 .entity("Cliente no corresponde a ninguna existencia")
+					 .entity("Dependiente no corresponde a ninguna existencia")
 					 .header("Access-Control-Allow-Origin", "*")
 					 .build();
 		}
@@ -103,7 +117,7 @@ public class Dependientes {
 		Dependiente dep = dependientes.findById(id);
 		if(dep == null) {
 			return Response.status(400)
-					 .entity("Cliente no corresponde a ninguna existencia")
+					 .entity("Dependiente no corresponde a ninguna existencia")
 					 .header("Access-Control-Allow-Origin", "*")
 					 .build();
 		}

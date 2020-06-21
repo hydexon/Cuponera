@@ -34,11 +34,11 @@ public class Cupones {
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getById(@PathParam("id") String id) throws SQLException {
+	public Response getById(@PathParam("id") int id) throws SQLException {
 		Cupon cup = cupones.findById(id);
 		if(cup == null) {
 			return Response.status(400)
-					 .entity("Cupon o Cliente no corresponde a ninguna existencia")
+					 .entity("[]")
 					 .header("Access-Control-Allow-Origin", "*")
 					 .build();
 		}
@@ -87,7 +87,7 @@ public class Cupones {
 	
 	@GET
 	@Path("redeem/{id}")
-	public Response reclamarCupon(@PathParam("id") String id) throws SQLException {
+	public Response reclamarCupon(@PathParam("id") int id) throws SQLException {
 		Cupon cup = cupones.findById(id);
 		if(cup == null) {
 			return Response.status(400)

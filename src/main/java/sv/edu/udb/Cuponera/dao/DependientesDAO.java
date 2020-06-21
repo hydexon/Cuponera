@@ -78,6 +78,22 @@ public class DependientesDAO extends AppConnection {
 		return dep;
 	}
 
-
+        public Dependiente findByUsr(String usr) throws SQLException {
+		connect();
+		pstmt = conn.prepareStatement("SELECT * FROM Dependientes WHERE Username=?");
+		pstmt.setString(1, usr);
+		resultSet = pstmt.executeQuery();
+		Dependiente dep = new Dependiente();
+		while(resultSet.next()) {
+			dep.setId(resultSet.getInt(1));
+			dep.setNombre(resultSet.getString(2));
+			dep.setApellidos(resultSet.getString(3));
+			dep.setCorreo(resultSet.getString(4));
+			dep.setContrasena(resultSet.getString(5));
+			dep.setUsername(resultSet.getString(6));
+		}
+		close();
+		return dep;
+	}
 
 }

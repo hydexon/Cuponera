@@ -17,5 +17,14 @@ public class Rubro {
 		this.rubro = rubro;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Rubro))
+			return false;
+		
+		Rubro r = (Rubro)obj;
+		return (this.id == r.id);
+	}
+	
 	
 }

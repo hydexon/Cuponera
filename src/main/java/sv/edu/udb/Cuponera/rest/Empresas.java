@@ -24,6 +24,7 @@ public class Empresas {
 	private EmpresasDAO empresas = new EmpresasDAO();
 	private RubrosDAO   rubros   = new RubrosDAO();
 	
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAll() throws SQLException {

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xml:lang="en" lang="en"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous"></link>
+    <title>Gestión Rubros</title>
+</h:head>
+<h:body>
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+	  <a class="navbar-brand" href="#">CUPONERA</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	        <a class="nav-link" href="promociones.xhtml">Promociones</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="empresas.xhtml">Empresas</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="rubros.xhtml">Rubros</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="usuarios.xhtml">Usuarios</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="roles.xhtml">Roles</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+
+    <br/><br/>
+    <div class="container">
+		<div class="jumbotron">
+			  <h1 class="display-4">Gestión de Rubros</h1>
+		</div>
+		<hr/>
+		<div>
+		  <div class="card card-body">
+		    <h:form id="rubroForm">
+        <div class="card">
+            <div class="card-body">
+            	<h:messages errorClass="alert alert-danger" infoClass="alert alert-info"/>
+            	<h:commandButton action="#{rubrosBean.clean()}" value="Nuevo Rubro/Limpiar" class="btn btn-success"><f:ajax execute="@form" render="rubroForm" resetValues="true"/></h:commandButton>
+                <div class="form-group">
+                    
+                    <label><h:outputText value="Id"/></label>
+                    <h:inputText id="id" value="#{rubrosBean.rubro.id}" class="form-control" readonly="true">
+                    </h:inputText>
+                </div>
+
+                <div class="form-group">
+                    <label><h:outputText value="Nombre"/></label>
+                    <h:inputText id="rubro" value="#{rubrosBean.rubro.rubro}" class="form-control">
+                    </h:inputText>
+                </div>
+	            <div class="card-footer">
+	                <h:commandButton action="#{rubrosBean.saveRubro(rubrosBean.rubro.id)}" value="Enviar" class="btn btn-success">
+	                     <f:ajax execute="@form"
+                            render="rubrosTable rubroForm datatableRubros"
+                                resetValues="true"/>
+	                </h:commandButton>
+	            </div>
+        	</div>
+        </div>
+		    </h:form>
+		  </div>
+		</div>
+
+    <h:form id="datatableRubros">
+        <h:dataTable id="rubrosTable" value="#{rubrosBean.rubros}" var="r" class="table">
+            <h:column><f:facet name="header" class="thead-dark">Id</f:facet>
+                #{r.id}
+            </h:column>
+            <h:column><f:facet name="header" class="thead-dark">Nombre</f:facet>
+                #{r.rubro}
+            </h:column>
+            <h:column><f:facet name="header" class="thead-dark">Acciones</f:facet>
+	            <h:commandButton action="#{rubrosBean.peekRubro(r.id)}"
+	                             value="Modificar" class="btn btn-warning">
+                     <f:ajax execute="@form" render="rubroForm" resetValues="false"/>
+               </h:commandButton>
+	            <h:commandButton action="#{rubrosBean.deleteRubro(r.id)}"
+	                             onclick="if(! confirm('Estas seguro que desea eliminar este registro')) return false"
+	                             value="Eliminar" class="btn btn-danger">
+                     <f:ajax execute="@form" render="@form"/>
+               </h:commandButton>
+
+            </h:column>
+
+        </h:dataTable>
+    </h:form>
+
+    </div>
+</h:body>
+</html>

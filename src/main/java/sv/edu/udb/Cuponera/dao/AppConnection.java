@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 
 public abstract class AppConnection {
 	// JDBC driver name and database URL
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/Cuponera";
+	static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
+	static final String DB_URL = "jdbc:mariadb://localhost:3306/Cuponera";
 	// Database credentials
 	static final String USER = "root";
 	static final String PASS = "";
@@ -26,7 +26,7 @@ public abstract class AppConnection {
 
 	public AppConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(AppConnection.class.getName()).log(Level.SEVERE, null, ex);
 		}

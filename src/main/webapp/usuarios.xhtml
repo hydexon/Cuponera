@@ -41,32 +41,49 @@
     <br/><br/>
     <div class="container">
 		<div class="jumbotron">
-			  <h1 class="display-4">Gestión de Rubros</h1>
+			  <h1 class="display-4">Gestión de Usuarios</h1>
 		</div>
 		<hr/>
 		<div>
 		  <div class="card card-body">
-		    <h:form id="rubroForm">
+		    <h:form id="usuarioForm">
         <div class="card">
             <div class="card-body">
             	<h:messages errorClass="alert alert-danger" infoClass="alert alert-info"/>
-            	<h:commandButton action="#{rubrosBean.clean()}" value="Nuevo Rubro/Limpiar" class="btn btn-success"><f:ajax execute="@form" render="rubroForm" resetValues="true"/></h:commandButton>
+            	<h:commandButton action="#{usuariosBean.clean()}" value="Nuevo Usuario/Limpiar" class="btn btn-success"><f:ajax execute="@form" render="rubroForm" resetValues="true"/></h:commandButton>
                 <div class="form-group">
                     
                     <label><h:outputText value="Id"/></label>
-                    <h:inputText id="id" value="#{rubrosBean.rubro.id}" class="form-control" readonly="true">
+                    <h:inputText id="id" value="#{usuariosBean.user.id}" class="form-control" readonly="true">
                     </h:inputText>
                 </div>
 
                 <div class="form-group">
-                    <label><h:outputText value="Nombre"/></label>
-                    <h:inputText id="rubro" value="#{rubrosBean.rubro.rubro}" class="form-control">
+                    <label><h:outputText value="Username"/></label>
+                    <h:inputText id="username" vaombrelue="#{usuariosBean.user.username}" class="form-control">
                     </h:inputText>
                 </div>
+                <div class="form-group">
+                    <label><h:outputText value="Nombre Completo"/></label>
+                    <h:inputText id="nombre" value="#{usuariosBean.user.nombreCompleto}" class="form-control">
+                    </h:inputText>
+                </div>
+                <div class="form-group">
+                    <label><h:outputText value="Correo"/></label>
+                    <h:inputText id="correo" value="#{usuariosBean.user.correo}" class="form-control">
+                    </h:inputText>
+                </div>
+                <div class="form-group">
+                    <label><h:outputText value="Rubros"/></label>
+                      <h:selectOneMenu value="#{usuariosBean.user.rol}" class="form-control" converter="roles">
+                      	<f:selectItems value="#{usuariosBean.roles}" var="roles" itemLabel="#{roles.rol}" itemValue="#{roles}"></f:selectItems>
+                      </h:selectOneMenu>
+              	</div>
+
 	            <div class="card-footer">
-	                <h:commandButton action="#{rubrosBean.saveRubro(rubrosBean.rubro.id)}" value="Enviar" class="btn btn-success">
+	                <h:commandButton action="#{usuariosBean.saveUsuario(usuariosBean.user.id)}" value="Enviar" class="btn btn-success">
 	                     <f:ajax execute="@form"
-                            render="rubrosTable rubroForm datatableRubros"
+                            render="usuariosTable usuarioForm datatableUsuarios"
                                 resetValues="true"/>
 	                </h:commandButton>
 	            </div>
@@ -76,20 +93,29 @@
 		  </div>
 		</div>
 
-    <h:form id="datatableRubros">
-        <h:dataTable id="rubrosTable" value="#{rubrosBean.rubros}" var="r" class="table">
+    <h:form id="datatableUsuarios">
+        <h:dataTable id="usuariosTable" value="#{usuariosBean.usuarios}" var="u" class="table">
             <h:column><f:facet name="header" class="thead-dark">Id</f:facet>
-                #{r.id}
+                #{u.id}
+            </h:column>
+            <h:column><f:facet name="header" class="thead-dark">Username</f:facet>
+                #{u.username}
             </h:column>
             <h:column><f:facet name="header" class="thead-dark">Nombre</f:facet>
-                #{r.rubro}
+                #{u.nombreCompleto}
+            </h:column>
+            <h:column><f:facet name="header" class="thead-dark">Correo</f:facet>
+                #{u.correo}
+            </h:column>
+            <h:column><f:facet name="header" class="thead-dark">Rol</f:facet>
+                #{u.rol.rol}
             </h:column>
             <h:column><f:facet name="header" class="thead-dark">Acciones</f:facet>
-	            <h:commandButton action="#{rubrosBean.peekRubro(r.id)}"
+	            <h:commandButton action="#{usuariosBean.peekUser(u.id)}"
 	                             value="Modificar" class="btn btn-warning">
                      <f:ajax execute="@form" render="rubroForm" resetValues="false"/>
                </h:commandButton>
-	            <h:commandButton action="#{rubrosBean.deleteRubro(r.id)}"
+	            <h:commandButton action="#{usuariosBean.deleteUsuario(r.id)}"
 	                             onclick="if(! confirm('Estas seguro que desea eliminar este registro')) return false"
 	                             value="Eliminar" class="btn btn-danger">
                      <f:ajax execute="@form" render="@form"/>
